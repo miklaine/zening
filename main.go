@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"time"
 )
 
 // InputJSON is a struct to hold the parsed JSON data.
@@ -40,6 +41,8 @@ func main() {
 		return
 	}
 
+	startTime := time.Now()
+
 	// Process data
 	transformedData := make(map[string]interface{})
 	for key, value := range inputJSON.Data {
@@ -53,6 +56,9 @@ func main() {
 		}
 	}
 
+	endTime := time.Now()
+	duration := endTime.Sub(startTime)
+
 	// Convert the transformed data to JSON and print it
 	outputJSON, err := json.MarshalIndent([]interface{}{transformedData}, "", "  ")
 	if err != nil {
@@ -61,4 +67,5 @@ func main() {
 	}
 
 	fmt.Println(string(outputJSON))
+	fmt.Println("Processing time:", duration)
 }
