@@ -109,7 +109,7 @@ func processMap(m map[string]interface{}) (map[string]interface{}, error) {
 		}
 	}
 	if len(resultMap) == 0 {
-		return nil, nil
+		return nil, fmt.Errorf("empty map")
 	}
 	return resultMap, nil
 }
